@@ -4,6 +4,7 @@ import java.util.Queue;
 public class Calculator {
 
     private String[] values;
+    private int wrongInputCount;
 
     private Queue<String> numberQueue = new LinkedList<String>();
     private Queue<String> nonNumberQueue = new LinkedList<String>();
@@ -19,7 +20,7 @@ public class Calculator {
     }
 
     private void ErrorCheck1(Queue<String> numberQueue, Queue<String> nonNumberQueue) {
-        if (nonNumberQueue.size() >= numberQueue.size()) {
+        if ((nonNumberQueue.size() >= numberQueue.size()) || (nonNumberQueue.size() != (numberQueue.size() - 1))) {
             throw new IllegalStateException("Wrong Value.");
         }
     }
@@ -69,7 +70,7 @@ public class Calculator {
         return resultNumber;
     }
 
-    protected Integer InputData(final String value) {
+    public Integer InputData(final String value) {
         StringEmptyCheck(value);
         values = value.split(" ");
         ErrorCheck(values);
